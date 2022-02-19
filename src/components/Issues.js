@@ -49,7 +49,7 @@ export default function Issues() {
     setColumns(newColumns);
   }, [issues]); // срабатывание только при изменении issues / columns (?)
 
-  const updateAndreload = (issueState, issue_number  ) => {
+  const updateAndreload = (issueState, issue_number) => {
     updateIssues(
         issueState,
         issue_number,
@@ -60,6 +60,7 @@ export default function Issues() {
   return (
     <div className="App">
       <h1>Обращения</h1>
+      <button onClick={()=>loadIssues(setIssues)} >Обновить таблицу</button>
       <p>
         {" "}
         Изменения синхронизированы с:{" "}

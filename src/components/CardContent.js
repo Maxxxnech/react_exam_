@@ -8,11 +8,11 @@ export default function CardContent({title, body, state, createdAt, closedAt, ht
        handleClose(newState, number);
    } 
     return (<div className={"CardContent " + state}>
-        <h3>{title}</h3>
-        <button onClick={()=> setOpen(!open)}>{!open? "Открыть": "Закрыть"}</button>
+        <h3 onClick={()=> setOpen(!open)}>{title}</h3>
+        {/* <button onClick={()=> setOpen(!open)}>{!open? "Открыть": "Закрыть"}</button> */}
         {open && <><p className="body">{body}</p>
         <p className="dates">Создано: {createdAt}</p>
-        <p>{user}</p>
+        <p>Автор обращения {user}</p>
         <a target="_blank" rel="noreferrer" href={html_url}>ссылка issue в GitHub</a>
         {closedAt && <p className="dates">Закрыто: {closedAt}</p> } </>}
         <br></br>
