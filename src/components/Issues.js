@@ -56,7 +56,7 @@ export default function Issues() {
         {" "}
         Изменения синхронизированы с:{" "}
         <a
-          href="https://github.com/Maxxxnech/react_exam_"
+          href="https://github.com/Maxxxnech/react_exam_/issues"
           target="_blank"
           rel="noreferrer"
         >

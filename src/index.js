@@ -9,7 +9,7 @@ import Materials from './components/Materials';
 import Projects from './components/Projects';
 import Home from './components/Home';
 import Issues from './components/Issues';
-
+import NotFound  from './components/NotFound';
 ReactDOM.render(
     <BrowserRouter>
       <Routes>
@@ -18,6 +18,7 @@ ReactDOM.render(
           <Route path="/materials" element={<Materials />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/issues" element={<Issues />} />
+          <Route path="/*" element={<NotFound />} />
         </Route>        
       </Routes>
     </BrowserRouter>,

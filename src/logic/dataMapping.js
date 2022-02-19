@@ -14,6 +14,8 @@ export function dataMapper(issues, columns) {
         state={el.state}
         createdAt={el.created_at}
         closedAt={el.closed_at}
+        html_url={el.html_url}
+        user={el.user.login}
       />
     ),
   }));
