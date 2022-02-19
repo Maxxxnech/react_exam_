@@ -3,7 +3,8 @@ import React from "react";
 import "./App.css";
 import { useNavigate, Link, Outlet, useLocation } from "react-router-dom";
 import { AppBar, Button, Toolbar, Typography, Box, IconButton} from "@mui/material";
-//import {ArrowBackIcon} from '@mui/icons-material';
+
+import KeyboardBackspaceSharpIcon from '@mui/icons-material/KeyboardBackspaceSharp';
 
 function App() {
   const navigate = useNavigate(); 
@@ -12,9 +13,8 @@ function App() {
   const notAtHome = location.pathname !== "/";
   return (
     <Box>
-       {notAtHome && <IconButton onClick={handleClickBack}>Назад</IconButton>}
       <AppBar position="static">
-      <Typography>Итоговое задание по курсу React</Typography>
+      <Typography variant="h4" align='center'>Итоговое задание по курсу React</Typography>
         <Toolbar>
           <Button>
             <Link to={`/`}>Главная</Link>
@@ -30,6 +30,7 @@ function App() {
           </Button>
         </Toolbar>
       </AppBar>
+      {notAtHome && <IconButton onClick={handleClickBack}><KeyboardBackspaceSharpIcon /></IconButton>}
       <Outlet />
     </Box>
   );

@@ -2,30 +2,32 @@
   text-align: center;
 }
 
-.img_big{
-  height: 100%;
-  width: auto
+.img_big {
+  height: auto;
+  width: 100%;
 }
 
-.issueHeader{
-  cursor:pointer
+.issueHeader {
+  cursor: pointer;
 }
-.issueHeader:hover{
-  filter:brightness(1.5)
+.issueHeader:hover {
+  filter: brightness(1.5);
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid;
 }
 
-thead{
+thead {
   font-weight: bold;
 }
-tr{
+tr {
   border-bottom: 1px solid black;
 }
 
-td{
+td {
   margin-right: 2px;
 }
 
@@ -33,7 +35,7 @@ td{
   /*background-color: rgba(0,0,0,0.5);*/
   background-color: white;
   position: fixed;
-  height: 40%;
+  min-height: 50%;
   width: 40%;
   top: 40%;
   left: 40%;
@@ -44,22 +46,23 @@ td{
   border: 1px solid black;
 }
 
-
-.modalHeader{
+.modalHeader {
   color: gray;
 }
 
-input{
+.modal_close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+input {
   background-color: antiquewhite;
   width: auto;
   height: 40px;
 }
 
-.clickable, button {
-  cursor: pointer
-}
-
-.clickable:hover{
-  
-  filter:drop-shadow()
+.clickable,
+button {
+  cursor: pointer;
 }

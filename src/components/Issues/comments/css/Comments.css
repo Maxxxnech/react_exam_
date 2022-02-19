@@ -1,0 +1,9 @@
+
+.tr_closed{
+    text-decoration: line-through;
+}
+
+.ModalList{
+   overflow-Y: scroll;
+   width:100%;
+}

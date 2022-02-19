@@ -2,6 +2,8 @@ import React, { PureComponent, useRef } from "react";
 import "./css/Comments.css"
 import ModalWrapper from "../../ModalWrapper";
 import Comment from "./Comment";
+import { Button, Typography, List, TextField, Box } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function CommentsModal({ comments, closeModal, addComment }) {
   const inputRef = useRef();
@@ -14,23 +16,30 @@ export default function CommentsModal({ comments, closeModal, addComment }) {
     inputRef.current.value = '';
   }
   return (
-    <ModalWrapper>
+    <ModalWrapper className="ModalWrapper">
       <div className="modal">
-        <button className="modalButton" onClick={() => closeModal(false)}>
+        <Button className="modal_close" variant="outlined" onClick={() => closeModal(false)}>
           Закрыть
-        </button>
+        </Button>
+        <List className="ModalList">
         {comments.data.map((comment) => (
           <Comment key={comment.id} commentText={comment.body}/>
         ))}
-        <input
-          ref={inputRef}
+        </List>
+        <Box sx={{display:"flex", justifyContent:"space-between"}}>
+        <TextField
+          id="newComment"
+          inputRef={inputRef}  //!!! inputRef={...}
           name="comment"
           type="text"
           placeholder="newComment"
-        ></input>
-        <button onClick={addClickHandler}>
-          Добавить комментарий
-        </button>
+          helperText="Введите новый комментарий"
+          sx={{height: "50px"}}
+        ></TextField>
+        <Button sx={{float:"right", height: "54px", marginLeft: "10px"}} variant="contained" onClick={addClickHandler}>
+        <AddIcon />
+        </Button>
+        </Box>
       </div>
     </ModalWrapper>
   );

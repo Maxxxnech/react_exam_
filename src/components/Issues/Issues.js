@@ -16,6 +16,7 @@ import { dataMapper, tableMapper } from "../../logic/dataMapping";
 import TableIssues from "./IssuesTable/Table";
 import CommentsModal from "./comments/CommentsModal";
 import FullTextModal from "./comments/FullTextModal";
+import { Button } from "@mui/material";
 // Заготовка для колонок
 const columnsFromBackend = {
   open: {
@@ -84,7 +85,7 @@ export default function Issues() {
   return (
     <div className="App">
       <h1>Обращения</h1>
-      <button onClick={() => loadIssues(setIssues)}>Обновить таблицу</button>
+      <Button variant="outlined" onClick={() => loadIssues(setIssues)}>Обновить таблицу</Button>
       <br></br>
       <TableIssues
         issues={issues}

@@ -1,25 +1,25 @@
 import React from "react";
-import TableRow from "./TableRow";
-
+import TableIssueRow from "./TableIssueRow";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 export default function TableIssues({ issues, updateAndReload, showComments, handleClose, showFullText }) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <td>Номер</td>
-          <td>статус обращения</td>
-          <td>Дата и время создания</td>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Номер</TableCell>
+          <TableCell>статус обращения</TableCell>
+          <TableCell>Дата и время создания</TableCell>
 
-          <td>Название</td>
-          <td>Автор обращения</td>
-          <td>Комментарии</td>
-          <td>Перейти к обращению</td>
-          <td>Изменить статус обращения</td>
-        </tr>
-      </thead>
-      <tbody>
+          <TableCell>Название</TableCell>
+          <TableCell>Автор обращения</TableCell>
+          <TableCell>Комментарии</TableCell>
+          <TableCell>Перейти к обращению</TableCell>
+          <TableCell>Изменить статус обращения</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
         {issues.map((el) => (
-          <TableRow
+          <TableIssueRow
             key={el.number}
             issue={el}
             showFullText={showFullText}
@@ -27,7 +27,7 @@ export default function TableIssues({ issues, updateAndReload, showComments, han
             showComments={showComments}
           />
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }

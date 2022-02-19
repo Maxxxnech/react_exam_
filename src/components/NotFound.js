@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import themes from "../data/themes";
-
+import {Typography} from "@mui/material";
 export default class NotFound extends PureComponent {
   constructor(props) {
     super(props);
@@ -8,8 +7,8 @@ export default class NotFound extends PureComponent {
   render() {
     return (
       <section>
-        <h1>Ой, тут ничего нет!</h1>
-        <p>404</p>
+        <Typography align="center" variant="h4">Ой, тут ничего нет!</Typography>
+        <p>...404...</p>
       </section>
     );
   }

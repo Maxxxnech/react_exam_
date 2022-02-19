@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import themes from "../data/themes";
-
+import {Typography} from "@mui/material";
 export default class Materials extends PureComponent {
   constructor(props) {
     super(props);
@@ -8,7 +7,7 @@ export default class Materials extends PureComponent {
   render() {
     return (
       <section>
-        <h1>Материалы курса</h1>
+        <Typography align="center" variant="h4">Материалы курса</Typography>
         {
           <img
             className="img_big"

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import themes from "../data/themes";
-
+import {Typography, List, ListItem} from "@mui/material";
 export default class Projects extends PureComponent {
   constructor(props) {
     super(props);
@@ -8,18 +8,18 @@ export default class Projects extends PureComponent {
   render() {
     return (
       <section>
-        <h1>Мои задачи на курсе</h1>
-        <ul>
+        <Typography align="center" variant="h4">Мои задачи на курсе</Typography>
+        <List>
           {Object.values(themes).map((el) => {
             return (
-              <li key={el.themeName}>
+              <ListItem key={el.themeName}>
                 <a target="blank" href={el.url}>
                   {el.themeName}
                 </a>
-              </li>
+              </ListItem>
             );
           })}
-        </ul>
+        </List>
       </section>
     );
   }
