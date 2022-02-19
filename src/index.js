@@ -8,19 +8,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Materials from './components/Materials';
 import Projects from './components/Projects';
 import Home from './components/Home';
+import Issues from './components/Issues';
 
 ReactDOM.render(
-  <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="/materials" element={<Materials />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/issues" element={<Issues />} />
         </Route>        
       </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

@@ -1,7 +1,7 @@
 //API для запросов к issues: https://docs.github.com/en/rest/reference/issues
 
 const owner = "Maxxxnech";
-const repo = "l10_t10_test_authorization";
+const repo = "react_exam_";
 const myUrl = `https://api.github.com/repos/${owner}/${repo}/issues`;
 
 

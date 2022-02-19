@@ -10,7 +10,8 @@ export default class Home extends PureComponent {
         return (
             <section>
                 <h1>Главная</h1>
-                <p></p>
+                <p>Всеобъемлющий курс Реакт!</p>
+                
             </section>
         )
     }
