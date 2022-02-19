@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useNavigate, Link, Outlet, useLocation } from "react-router-dom";
+import { AppBar, Button, Toolbar, Typography, Box, IconButton} from "@mui/material";
+import {ArrowBackIcon} from '@mui/icons-material';
 
 function App() {
+  const navigate = useNavigate(); 
+  const handleClickBack = () => navigate(-1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <AppBar position="static">
+      <Typography>Итоговое задание по курсу React</Typography>
+        <Toolbar>
+          <IconButton onClick={handleClickBack}>{ArrowBackIcon}</IconButton>
+          <Button>
+            <Link to={`/`}>Главная</Link>
+          </Button>
+          <Button>
+            <Link to={`/materials`}>Материалы на курсе</Link>
+          </Button>
+          <Button>
+            <Link to={`/projects`}>Мои работы</Link>
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Outlet />
+    </Box>
   );
 }
 
