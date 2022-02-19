@@ -1,4 +1,5 @@
-import logo from "./logo.svg";
+import React, { PureComponent } from "react";
+
 import "./App.css";
 import { useNavigate, Link, Outlet, useLocation } from "react-router-dom";
 import { AppBar, Button, Toolbar, Typography, Box, IconButton} from "@mui/material";
