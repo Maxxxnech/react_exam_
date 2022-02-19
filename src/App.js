@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useNavigate, Link, Outlet, useLocation } from "react-router-dom";
 import { AppBar, Button, Toolbar, Typography, Box, IconButton} from "@mui/material";
-import {ArrowBackIcon} from '@mui/icons-material';
+//import {ArrowBackIcon} from '@mui/icons-material';
 
 function App() {
   const navigate = useNavigate(); 
@@ -13,7 +13,7 @@ function App() {
       <AppBar position="static">
       <Typography>Итоговое задание по курсу React</Typography>
         <Toolbar>
-          <IconButton onClick={handleClickBack}>{ArrowBackIcon}</IconButton>
+          <IconButton onClick={handleClickBack}>Назад</IconButton>
           <Button>
             <Link to={`/`}>Главная</Link>
           </Button>
