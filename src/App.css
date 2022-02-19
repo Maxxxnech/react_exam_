@@ -6,3 +6,60 @@
   height: 100%;
   width: auto
 }
+
+.issueHeader{
+  cursor:pointer
+}
+.issueHeader:hover{
+  filter:brightness(1.5)
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+thead{
+  font-weight: bold;
+}
+tr{
+  border-bottom: 1px solid black;
+}
+
+td{
+  margin-right: 2px;
+}
+
+.modal {
+  /*background-color: rgba(0,0,0,0.5);*/
+  background-color: white;
+  position: fixed;
+  height: 40%;
+  width: 40%;
+  top: 40%;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+
+.modalHeader{
+  color: gray;
+}
+
+input{
+  background-color: antiquewhite;
+  width: auto;
+  height: 40px;
+}
+
+.clickable, button {
+  cursor: pointer
+}
+
+.clickable:hover{
+  
+  filter:drop-shadow()
+}

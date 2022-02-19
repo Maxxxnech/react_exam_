@@ -8,8 +8,7 @@ export default function CardContent({title, body, state, createdAt, closedAt, ht
        handleClose(newState, number);
    } 
     return (<div className={"CardContent " + state}>
-        <h3 onClick={()=> setOpen(!open)}>{title}</h3>
-        {/* <button onClick={()=> setOpen(!open)}>{!open? "Открыть": "Закрыть"}</button> */}
+        <h3 className="issueHeader" onClick={()=> setOpen(!open)}>{title}</h3>
         {open && <><p className="body">{body}</p>
         <p className="dates">Создано: {createdAt}</p>
         <p>Автор обращения {user}</p>

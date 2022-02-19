@@ -6,7 +6,6 @@ export default class Home extends PureComponent {
         super(props)
     }
     render(){
-        console.log(Object.values(themes))
         return (
             <section>
                 <h1>Главная</h1>

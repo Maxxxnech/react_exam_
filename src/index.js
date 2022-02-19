@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Materials from './components/Materials';
 import Projects from './components/Projects';
 import Home from './components/Home';
-import Issues from './components/Issues';
+import Issues from './components/Issues/Issues';
 import NotFound  from './components/NotFound';
 ReactDOM.render(
     <BrowserRouter>

@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 // *** Действия после перетаскивания**
-import { onDragEnd } from "../logic/dragAndDrop";
+import { onDragEnd } from "../../logic/dragAndDrop";
 
 // **Модуль для fetch-запросов**
-import { loadIssues, updateIssues } from "../requests/requests";
+import {
+  loadIssues,
+  updateIssues,
+  createComment,
+} from "../../requests/requests";
 
-import { dataMapper } from "../logic/dataMapping";
-// **Содержимое каждой карточки**
-import CardContent from "../components/CardContent";
+import { dataMapper, tableMapper } from "../../logic/dataMapping";
 
-
+import TableIssues from "./IssuesTable/Table";
+import CommentsModal from "./comments/CommentsModal";
+import FullTextModal from "./comments/FullTextModal";
 // Заготовка для колонок
 const columnsFromBackend = {
   open: {
@@ -30,39 +34,79 @@ export default function Issues() {
   const [columns, setColumns] = useState(columnsFromBackend);
   // **Состояние для  Issues**
   const [issues, setIssues] = useState([]);
-
+  const [commentsModalOpen, setCommentsModalOpen] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [fullTextModalOpen, setfullTextModalOpen] = useState(false);
+  const [fullText, setfullText] = useState("");
   // **Загрузка данных при монтировнии (аналогично componentDidMount)**
   useEffect(() => {
     loadIssues(setIssues);
   }, []);
- 
+
   // **Изменение состояния колонок при изменении issues**
   useEffect(() => {
-    // console.log(issues, columns)
     if (!issues.length) return;
-
     // **Распределяем по колонкам содержимое issues**
-    const newColumns = dataMapper(issues, columns, updateAndreload);
-
-    console.log(issues);
+    const newColumns = dataMapper(issues, columns, updateAndReload);
     // Устанавиливаем состояние колонок
     setColumns(newColumns);
   }, [issues]); // срабатывание только при изменении issues / columns (?)
 
-  const updateAndreload = (issueState, issue_number) => {
+  const updateAndReload = (issueState, issue_number) => {
     updateIssues(
-        issueState,
-        issue_number,
-        //***После обновления репозитория - подтягиваем данные в приложение*** */
-        () => loadIssues(setIssues)
-      )
-  }
+      issueState,
+      issue_number,
+      //***После обновления репозитория - подтягиваем данные в приложение*** */
+      () => loadIssues(setIssues)
+    );
+  };
+
+  const getComments = async (url, number) => {
+    let newComments;
+    await fetch(url)
+      .then((result) => result.json())
+      .then((result) => {
+        newComments = {
+          issueNumber: number,
+          url: url,
+          data: result.map((el) => ({ id: el.id, body: el.body })),
+        };
+        setComments(newComments);
+      });
+    return newComments;
+  };
+
+  const showComments = async (url, number) => {
+    await getComments(url, number);
+    setCommentsModalOpen(true);
+  };
+
   return (
     <div className="App">
       <h1>Обращения</h1>
-      <button onClick={()=>loadIssues(setIssues)} >Обновить таблицу</button>
+      <button onClick={() => loadIssues(setIssues)}>Обновить таблицу</button>
+      <br></br>
+      <TableIssues
+        issues={issues}
+        updateAndReload={updateAndReload}
+        showFullText={(text) => {
+          setfullText(text)
+          setfullTextModalOpen(true);
+        }}
+        showComments={showComments}
+        handleClose={updateAndReload}
+      ></TableIssues>
+      <br></br>
       <p>
-        {" "}
+        {fullTextModalOpen && <FullTextModal text={fullText} closeModal={setfullTextModalOpen}/>}
+        {commentsModalOpen && (
+          <CommentsModal
+            comments={comments}
+            closeModal={setCommentsModalOpen}
+            addComment={createComment}
+            refreshComments={() => getComments(comments.url, comments.number)}
+          />
+        )}
         Изменения синхронизированы с:{" "}
         <a
           href="https://github.com/Maxxxnech/react_exam_/issues"
@@ -82,8 +126,10 @@ export default function Issues() {
               columns,
               setColumns,
               //**************После перетаскивания - обновляем удаленный репозиторий ***/
-                updateAndreload(result.destination.droppableId,
-                    result.draggableId)
+              updateAndReload(
+                result.destination.droppableId,
+                result.draggableId
+              )
             )
           }
         >

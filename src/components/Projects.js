@@ -6,7 +6,6 @@ export default class Projects extends PureComponent {
     super(props);
   }
   render() {
-    console.log(Object.values(themes));
     return (
       <section>
         <h1>Мои задачи на курсе</h1>

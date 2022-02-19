@@ -1,6 +1,7 @@
 import React from "react";
 // **Содержимое каждой карточки**
-import CardContent from "../components/CardContent";
+import CardContent from "../components/Issues/CardContent";
+
 
 export function dataMapper(issues, columns, handleClose) {
   let newColumns = { ...columns };
@@ -28,8 +29,7 @@ export function dataMapper(issues, columns, handleClose) {
       (el) => el.state.toLowerCase() === key.toLowerCase()
     );
     newColumns[key].items = filtered;
-    console.log(key, filtered);
   }
-
   return newColumns;
 }
+

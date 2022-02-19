@@ -22,7 +22,7 @@ export function loadIssues(cbk) {
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log(`Got data from ${myUrl} ${JSON.stringify(data)}`);
+      //console.log(`Got data from ${myUrl} ${JSON.stringify(data)}`);
       //async
       cbk && cbk(data);
     });
@@ -52,6 +52,44 @@ export function updateIssues(state, issue_number, cbk) {
         clearTimeout(myTimeout);
         myTimeout = setTimeout(()=>cbk(data), 1000);
       }
-    });
+    }).catch(err=> console.log(err));
 }
 
+export const updateComments = (commentId) => {
+    const issueUrl = myUrl + "/comments" + commentId;
+}
+
+export const createComment = (issue_number, body, cbk) => {
+    const issueUrl = myUrl + "/" + issue_number + "/comments";
+    let myTimeout = null;
+    if(!body) return;
+    fetch(issueUrl, {
+        cache: "no-store",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...auth,
+        },        
+        body: JSON.stringify({
+            owner: `${owner}`,
+            repo: `${repo}`,
+            issue_number: issue_number,
+            body: body,
+          }),
+      })
+        .then((response) =>{
+            if (!response.ok) {
+            // create error object and reject if not a 2xx response code
+            let err = new Error("HTTP status code: " + response.status + " " + JSON.stringify(response))
+            err.response = response
+            err.status = response.status
+            throw err
+        }
+        return response})
+        .then(() => {
+          if(cbk) {
+            clearTimeout(myTimeout);
+            myTimeout = setTimeout(()=>cbk(), 1000);
+          }
+        }).catch(err => console.log(err))
+}
