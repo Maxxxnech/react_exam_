@@ -35,7 +35,7 @@ export default function Issues() {
   useEffect(() => {
     loadIssues(setIssues);
   }, []);
-
+ 
   // **Изменение состояния колонок при изменении issues**
   useEffect(() => {
     // console.log(issues, columns)
