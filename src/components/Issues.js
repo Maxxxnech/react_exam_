@@ -42,13 +42,21 @@ export default function Issues() {
     if (!issues.length) return;
 
     // **Распределяем по колонкам содержимое issues**
-    const newColumns = dataMapper(issues, columns);
+    const newColumns = dataMapper(issues, columns, updateAndreload);
 
     console.log(issues);
     // Устанавиливаем состояние колонок
     setColumns(newColumns);
   }, [issues]); // срабатывание только при изменении issues / columns (?)
 
+  const updateAndreload = (issueState, issue_number  ) => {
+    updateIssues(
+        issueState,
+        issue_number,
+        //***После обновления репозитория - подтягиваем данные в приложение*** */
+        () => loadIssues(setIssues)
+      )
+  }
   return (
     <div className="App">
       <h1>Обращения</h1>
@@ -73,12 +81,8 @@ export default function Issues() {
               columns,
               setColumns,
               //**************После перетаскивания - обновляем удаленный репозиторий ***/
-              updateIssues(
-                result.destination.droppableId,
-                result.draggableId,
-                //***После обновления репозитория - подтягиваем данные в приложение*** */
-                () => loadIssues(setIssues)
-              )
+                updateAndreload(result.destination.droppableId,
+                    result.draggableId)
             )
           }
         >

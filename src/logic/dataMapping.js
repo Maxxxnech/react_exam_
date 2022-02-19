@@ -2,7 +2,7 @@ import React from "react";
 // **Содержимое каждой карточки**
 import CardContent from "../components/CardContent";
 
-export function dataMapper(issues, columns) {
+export function dataMapper(issues, columns, handleClose) {
   let newColumns = { ...columns };
   const mappedIssues = issues.map((el) => ({
     id: `${el.number}`,
@@ -16,6 +16,8 @@ export function dataMapper(issues, columns) {
         closedAt={el.closed_at}
         html_url={el.html_url}
         user={el.user.login}
+        handleClose={handleClose}
+        number={el.number}
       />
     ),
   }));

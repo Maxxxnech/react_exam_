@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import "./css/CardContent.css";
 
-export default function CardContent({title, body, state, createdAt, closedAt, html_url, user}){
+export default function CardContent({title, body, state, createdAt, closedAt, html_url, user, handleClose, number }){
    const [open, setOpen] = useState(false);
+   const handleClick= () =>{
+       let newState = state === "closed"? "open": "closed"
+       handleClose(newState, number);
+   } 
     return (<div className={"CardContent " + state}>
         <h3>{title}</h3>
         <button onClick={()=> setOpen(!open)}>{!open? "Открыть": "Закрыть"}</button>
@@ -11,5 +15,7 @@ export default function CardContent({title, body, state, createdAt, closedAt, ht
         <p>{user}</p>
         <a target="_blank" rel="noreferrer" href={html_url}>ссылка issue в GitHub</a>
         {closedAt && <p className="dates">Закрыто: {closedAt}</p> } </>}
+        <br></br>
+        <button onClick={handleClick}>{state === "closed"? "Открыть обращение": "Закрыть обращение"}</button>
     </div>)
 }
